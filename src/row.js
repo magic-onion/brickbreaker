@@ -29,18 +29,5 @@ class Row {
 
     }
     pop()
-
   }
 }
-
-
-constructor(x, y) {
-  this.x = x
-  this.y = y
-  this.shapes = [];
-  this.allShapes = 150
-  this.speed = 5
-  this.gap = []
-  this.shapeSpace = round(random(5, 7));
-}
-//decrease distance between recs in a single stream

@@ -2,7 +2,7 @@ class Ball {
   constructor() {
     this.pos = createVector(width/2, height/2)
     this.r = 7
-    this.speed = 3
+    this.speed = 3.5
     this.vel = createVector(1, 1).mult(this.speed) //mult controls speed
     this.direction = createVector(1,1)
   }
@@ -61,7 +61,16 @@ class Ball {
       return false;
     }
   }
+  checkLoss() {
+    if (this.pos.y > height + this.r) {
+      background(123, 123, 123)
+      textSize(30)
+      text(`        SCORE: ${scoreBoard.score} \n Click to Play Again`, 60, 180)
+      isPlaying = false;
+    }
+  }
 }
+
 
 //if paddle hit on right side, direction.x *= -1
 //if paddle hits on left side, direction.x *= -1

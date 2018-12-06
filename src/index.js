@@ -3,14 +3,23 @@ let ball;
 let brick;
 let bricks = []
 let scoreBoard;
+let isPlaying = true;
 
 
 function setup() {
   createCanvas(400, 400);
   scoreBoard = new ScoreBoard
   player = new Player;
+  // ball = new Ball;
+  // for (let i = 0; i < 1; i++) {
+  //   bricks.push(new Brick);
+  // }
+  makeBricks()
+}
+
+function makeBricks() {
   ball = new Ball;
-  for (let i = 0; i < 75; i++) {
+  for (let i = 0; i < 45; i++) {
     bricks.push(new Brick);
   }
 }
@@ -26,9 +35,11 @@ function draw() {
       scoreBoard.score +=1
     }
   }
+  if (bricks.length === 0) {
+    makeBricks()
+  }
 
   scoreBoard.display();
-
 
   player.display();
   player.update()
@@ -38,6 +49,7 @@ function draw() {
   ball.update()
   ball.checkEdges()
   ball.meets(player)
+  ball.checkLoss()
 
   if ((ball.meets(player) > 0) && ball.direction.y > 0 && ball.direction.x > 0) {
     ball.direction.y *= -1
@@ -57,10 +69,6 @@ function draw() {
 
 }
 
-
-
-
-
 function keyReleased() {
   player.isMovingLeft = false;
   player.isMovingRight = false;
@@ -72,5 +80,15 @@ function keyPressed() {
   }
   else if (key === 'A' || key === "a") {
     player.isMovingLeft = true
+  }
+
+}
+
+function mousePressed() {
+if (!isPlaying) {
+  bricks.splice(0, bricks.length)
+  setup()
+  isPlaying = true
+  loop()
   }
 }

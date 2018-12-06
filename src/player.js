@@ -2,7 +2,7 @@ class Player {
   constructor() {
     this.w = 70
     this.h = 12
-    this.pos = createVector(width/2, height-20)
+    this.pos = createVector(width/2 - 45, height-20)
     this.isMovingLeft = false;
     this.isMovingRight = false;
   }
