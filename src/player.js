@@ -8,7 +8,10 @@ class Player {
   }
 
   display() {
+    push()
+    fill(220, 33, 33)
     rect(this.pos.x, this.pos.y, this.w, this.h)
+    pop()
   }
 
   update() {

@@ -9,6 +9,8 @@ class Brick {
 
   display() {
     push();
+    let color = round(random(150, 165))
+    fill (200, 200, 200)
     translate(this.pos.x, this.pos.y);
     rotate(1.54)
     beginShape();

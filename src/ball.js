@@ -13,7 +13,10 @@ class Ball {
   }
 
   display() {
+    push()
+    fill(250, 250, 250)
     ellipse(this.pos.x, this.pos.y, this.r * 2, this.r * 2)
+    pop()
   }
 
   checkEdges() {

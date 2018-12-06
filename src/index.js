@@ -67,10 +67,10 @@ function keyReleased() {
 }
 
 function keyPressed() {
-  if (key === "l" || key === "L") {
+  if (key === "d" || key === "D") {
     player.isMovingRight = true;
   }
-  else if (key === 'j' || key === "J") {
+  else if (key === 'A' || key === "a") {
     player.isMovingLeft = true
   }
 }
