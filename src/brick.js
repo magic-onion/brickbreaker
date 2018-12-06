@@ -1,6 +1,8 @@
 class Brick {
-  constructor() {
+  constructor() { //pass in x and y
     this.r = 17
+    this.x // =x
+    this.y //= y
     this.pos = createVector(random(10, width - 10), random(20, height-200))
     this.total = 5
   }
