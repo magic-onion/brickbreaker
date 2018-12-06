@@ -1,16 +1,35 @@
 let player;
 let ball;
+let brick;
+let bricks = []
+let scoreBoard;
+
 
 function setup() {
   createCanvas(400, 400);
-
+  scoreBoard = new ScoreBoard
   player = new Player;
   ball = new Ball;
+  for (let i = 0; i < 75; i++) {
+    bricks.push(new Brick);
+  }
 }
 
 function draw() {
   // rectMode(CENTER)
   background(80, 80, 80);
+  for (let i = 0; i < bricks.length; i++) {
+    bricks[i].display()
+    if (ball.hits(bricks[i]) === true) {
+      bricks.splice(i, 1)
+      ball.direction.y *= -1
+      scoreBoard.score +=1
+    }
+  }
+
+  scoreBoard.display();
+
+
   player.display();
   player.update()
   player.checkEdges()
@@ -19,10 +38,28 @@ function draw() {
   ball.update()
   ball.checkEdges()
   ball.meets(player)
-  if (ball.meets(player) && ball.direction.y > 0) {
+
+  if ((ball.meets(player) > 0) && ball.direction.y > 0 && ball.direction.x > 0) {
+    ball.direction.y *= -1
+    // ball.direction.x *= -1
+  }
+  else if ((ball.meets(player) < 0) && ball.direction.y > 0 && ball.direction.x > 0) {
+    ball.direction.x *= -1
     ball.direction.y *= -1
   }
+  else if ((ball.meets(player) > 0) && ball.direction.y > 0 && ball.direction.x < 0) {
+    ball.direction.y *= -1
+    ball.direction.x *= -1
+  }
+  else if ((ball.meets(player) < 0) && ball.direction.y > 0 && ball.direction.x < 0) {
+    ball.direction.y *= -1
+  }
+
 }
+
+
+
+
 
 function keyReleased() {
   player.isMovingLeft = false;
